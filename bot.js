@@ -348,7 +348,7 @@ client.on('interactionCreate', async (interaction) => {
 
         await fetch('https://plausible.io/api/v1/stats/aggregate?site_id=kryptokrona.org&period=7d&metrics=visitors,pageviews,bounce_rate,visit_duration', {
             headers: {
-                Authorization: `Bearer JFNBMEiawgzRWTD_EaUBfnC2UUZXLY5LWvEd6Umm9OrPa0tnNwcZZ-NNOcJT7tp2`
+                Authorization: `Bearer`
             }
         }).then(res => res.json())
             .then(data => {
@@ -360,7 +360,7 @@ client.on('interactionCreate', async (interaction) => {
 
         await fetch('https://plausible.io/api/v1/stats/aggregate?site_id=hugin.chat&period=7d&metrics=visitors,pageviews,bounce_rate,visit_duration', {
             headers: {
-                Authorization: `Bearer JFNBMEiawgzRWTD_EaUBfnC2UUZXLY5LWvEd6Umm9OrPa0tnNwcZZ-NNOcJT7tp2`
+                Authorization: `Bearer`
             }
         }).then(res => res.json())
             .then(data => {
