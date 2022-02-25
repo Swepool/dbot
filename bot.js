@@ -73,7 +73,7 @@ function numberWithCommasToFixed(x) {
     return x.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-client.on('interactionCreate', async (pls, interaction) => {
+client.on('interactionCreate', async (interaction) => {
     if (!interaction.isCommand()) {
         return
     }
@@ -346,30 +346,28 @@ client.on('interactionCreate', async (pls, interaction) => {
         let huginDuration
         let huginBounceRate
 
-        fetch('https://plausible.io/api/v1/stats/aggregate?site_id=kryptokrona.org&period=7d&metrics=visitors,pageviews,bounce_rate,visit_duration', {
-            method: "get",
+        await fetch('https://plausible.io/api/v1/stats/aggregate?site_id=kryptokrona.org&period=7d&metrics=visitors,pageviews,bounce_rate,visit_duration', {
             headers: {
                 Authorization: `Bearer JFNBMEiawgzRWTD_EaUBfnC2UUZXLY5LWvEd6Umm9OrPa0tnNwcZZ-NNOcJT7tp2`
             }
         }).then(res => res.json())
             .then(data => {
-                xkrVisitors = data.results.visitors
-                xkrPageViews = data.results.pageviews
-                xkrDuration = data.results.visit_duration
-                xkrBounceRate = data.results.bounce_rate
+                xkrVisitors = (data.results.visitors.value).toString()
+                xkrPageViews = (data.results.pageviews.value).toString()
+                xkrDuration = (data.results.visit_duration.value).toString()
+                xkrBounceRate = (data.results.bounce_rate.value).toString()
             })
 
-        fetch('https://plausible.io/api/v1/stats/aggregate?site_id=hugin.chat&period=7d&metrics=visitors,pageviews,bounce_rate,visit_duration', {
-            method: "get",
+        await fetch('https://plausible.io/api/v1/stats/aggregate?site_id=hugin.chat&period=7d&metrics=visitors,pageviews,bounce_rate,visit_duration', {
             headers: {
                 Authorization: `Bearer JFNBMEiawgzRWTD_EaUBfnC2UUZXLY5LWvEd6Umm9OrPa0tnNwcZZ-NNOcJT7tp2`
             }
         }).then(res => res.json())
             .then(data => {
-                huginVisitors = data.results.visitors
-                huginPageViews = data.results.pageviews
-                huginDuration = data.results.visit_duration
-                huginBounceRate = data.results.bounce_rate
+                huginVisitors = data.results.visitors.value
+                huginPageViews = (data.results.pageviews.value).toString()
+                huginDuration = (data.results.visit_duration.value).toString()
+                huginBounceRate = (data.results.bounce_rate.value).toString()
             })
 
 
@@ -381,13 +379,13 @@ client.on('interactionCreate', async (pls, interaction) => {
             .setThumbnail('https://letshash.it/static/coins/xkr.png')
             .addFields(
                 {name: '\u200B', value: '\u200B'},
-                {name: 'https://kryptokrona.org', value: ` `},
+                {name: 'https://kryptokrona.org', value: `-`},
                 {name: 'Visitors', value: `${xkrVisitors}`, inline: true},
                 {name: 'Page Views', value: `${xkrPageViews}`, inline: true},
                 {name: 'Duration', value: `${xkrDuration}s`, inline: true},
-                {name: 'Bounce rate', value: `${xkrBounceRate}%`, inline: true},
+                {name: 'Bounce rate', value: `${xkrBounceRate}%`},
                 {name: '\u200B', value: '\u200B'},
-                {name: 'https://hugin.chat', value: ` `},
+                {name: 'https://hugin.chat', value: `-`},
                 {name: 'Visitors', value: `${huginVisitors}`, inline: true},
                 {name: 'Page Views', value: `${huginPageViews}`, inline: true},
                 {name: 'Duration', value: `${huginDuration}s`, inline: true},
