@@ -328,7 +328,7 @@ client.on('interactionCreate', async (interaction) => {
     }
     //WEBSITE COMMAND
     else if (commandName === 'websites') {
-        console.log('🚨 Pool command received')
+        console.log('🚨 Websites command received')
 
         await interaction.deferReply({
             ephemeral: false
@@ -397,7 +397,7 @@ client.on('interactionCreate', async (interaction) => {
 
         interaction.editReply({embeds: [embed]})
         countCommands()
-        console.log(`${count} - ✅ Website message sent!`)
+        console.log(`${count} - ✅ Websites message sent!`)
     }
 })
 
