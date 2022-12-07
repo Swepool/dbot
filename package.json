@@ -2,9 +2,9 @@
   "name": "discordbot",
   "version": "1.0.0",
   "description": "",
-  "main": "bot.ts",
+  "main": "src/bot.ts",
   "scripts": {
-    "dev": "nodemon bot.ts",
+    "dev": "nodemon src/bot.ts",
     "build": "tsc"
   },
   "keywords": [],
